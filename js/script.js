@@ -69,8 +69,6 @@ window.addEventListener('DOMContentLoaded', function() {
             hours.textContent = addZerro(t.hours);
             minutes.textContent = addZerro(t.minutes);
             seconds.textContent = addZerro(t.seconds);
-            console.log(t.seconds);
-            console.log(t.seconds.length);
 
             if (t.total <= 0) {
                 clearInterval(timeInterval);
@@ -82,4 +80,29 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
     setClock('timer', deadline);
+
+    // modal
+
+    let more = document.querySelector('.more'),
+        descrBtn = document.querySelector('.description-btn'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close');
+
+    function openPopup(btn) {
+        btn.addEventListener('click', function() {
+            overlay.style.display = 'block';
+            this.classList.add('more-splash');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    openPopup(descrBtn);
+    openPopup(more);
+
+
+    close.addEventListener('click', function() {
+        overlay.style.display = 'none';
+        more.classList.remove('more-splash');
+        document.body.style.overflow = '';
+    });
 });
